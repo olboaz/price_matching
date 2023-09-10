@@ -1,0 +1,20 @@
+<h1>Liste de mes produits </h1>
+<table>
+    <thead>
+        <tr>
+            <td>Nom</td> 
+            <td>Ean</td> 
+            <td>Category</td> 
+        </tr>
+    </thead>
+    <tbody>
+    
+        <% @products.each do |product| %>
+            <tr> 
+                <th><%= product.name %></th>  
+                <th><%= product.ean %></th>  
+                <th><%= product.category %></th>  
+            </tr>
+        <% end %>  
+    </tbody>
+</table>
