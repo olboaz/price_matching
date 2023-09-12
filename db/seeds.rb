@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 ProductCustomerPrice.destroy_all
 Product.destroy_all
 Customer.destroy_all
@@ -22,7 +14,7 @@ resp = Net::HTTP.get_response(URI.parse(source))
 data = resp.body
 result = JSON.parse(data)
 
-
+## Exemple extraction Open Food Fact
 # "product_name_fr_imported"=>"Magnum Glace Bâtonnet Amande 4x110ml",
 # "product_quantity"=>"328"
 # "quantity"=>"328 g",
@@ -138,13 +130,12 @@ customer_list_full = %w[
     Supermarché\ Match
     Supermarchés\ G20
     Supermarchés\ Sitis
-    Surgelé
     Thiriet
     U\ express
     Utile
     Vival
     Viveco
-    Votre Marché    
+    Votre\ Marché    
 ]
 
 customer_list_short  = %w[
