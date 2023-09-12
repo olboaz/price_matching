@@ -1,20 +1,24 @@
-<h1>Liste de mes produits </h1>
-<table>
-    <thead>
-        <tr>
-            <td>Nom</td> 
-            <td>Ean</td> 
-            <td>Category</td> 
-        </tr>
-    </thead>
-    <tbody>
-    
-        <% @products.each do |product| %>
-            <tr> 
-                <th><%= product.name %></th>  
-                <th><%= product.ean %></th>  
-                <th><%= product.category %></th>  
-            </tr>
-        <% end %>  
-    </tbody>
-</table>
+<select>
+    <% @customers.each do |cust| %>
+        <option><%= cust.name  %></option>
+    <% end %>
+</select>
+<div class="cards"> 
+    <% @products.each do |product| %>
+        <div class="card-product">
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <div class="card-product-infos">
+                <h2><%= product.long_name ||= product.short_name %></h2>
+                <p><%= product.brand ||= product.company %></p>
+                <p><%= product.ean %></p>
+                <p class="price"><%= number_to_currency(product.product_customer_prices.first.price, locale: :fr) %></p>
+            </div>
+        </div>
+    <% end %>  
+</div>
+<nav>       
+  <ul class="nav">        
+    <li><a href="#" id="barcode_button" class="fa-solid fa-barcode fa-xl"><i class="fa-solid fa-barcode fa-xl"></i></a></li> 
+  </ul> 
+</nav>
+<div id="barcodescanner" width="600px"></div>
