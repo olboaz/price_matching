@@ -12,7 +12,7 @@ Customer.destroy_all
 User.destroy_all
 puts "All destroy"
 
-User.create(email: "ppastg92@free.fr", password: "1234567")
+User.create(email: "price@com.com", password: "1234567")
 puts "Users created"
 
 require 'net/http'
