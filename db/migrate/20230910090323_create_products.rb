@@ -9,7 +9,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
       t.string :brand
       t.string :ean
       t.string :categories
-
+      t.references :user, index: true, foreign_key: true
       t.timestamps
     end
   end

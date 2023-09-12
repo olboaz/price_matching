@@ -6,9 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+ProductCustomerPrice.destroy_all
+Product.destroy_all
+Customer.destroy_all
+User.destroy_all
+puts "All destroy"
 
-# User.create(email: "ppastg92@free.fr", password: "1234567")
-# puts "Users created"
+User.create(email: "ppastg92@free.fr", password: "1234567")
+puts "Users created"
 
 require 'net/http'
 require 'json'
@@ -30,7 +35,7 @@ result = JSON.parse(data)
 # "image_url"=>"https://images.openfoodfacts.net/images/products/871/256/632/8208/front_en.120.400.jpg"
 
 
-Product.create(
+p = Product.create(
     short_name: result["product"]["product_name_fr"], 
     long_name: result["product"]["product_name_fr_imported"],
     quantity: result["product"]["quantity"],
@@ -38,6 +43,180 @@ Product.create(
     company: result["product"]["brands"],
     brand: result["product"]["brands_imported"],
     ean: result["code"], 
-    categories: result["product"]["categories"]
+    categories: result["product"]["categories"],
+    user_id: User.first.id
 )
 puts "Products created"
+
+c = Customer.create(name: "Casino")
+puts "Customers created"
+
+ProductCustomerPrice.create(product_id: p.id, customer_id: c.id, price: 2.45, date: DateTime.now)
+puts "Price created"
+
+customer_list_full = %w[
+    8\ à\ Huit
+    Action
+    Aldi
+    Atoo
+    Auchan
+    Auchan\ Supermarché
+    B&M
+    Babou
+    Bi1
+    Bio\ c'bon
+    Biocoop
+    Biomonde
+    Carrefour
+    Carrefour\ Bio
+    Carrefour\ City
+    Carrefour\ Contact
+    Carrefour\ Express
+    Carrefour\ Market
+    Carrefour\ Montagne
+    Casino\ #HyperFrais
+    Casino\ #ToutPrès
+    Casino\ Shop
+    Casino\ Supermarchés
+    Centrakor
+    Coccimarket
+    Coccinelle
+    Colruyt
+    Coop
+    Cora
+    Croc'Nature
+    Diagonal
+    Discount
+    E.Leclerc
+    E.Leclerc\ Bio
+    E.Leclerc\ express
+    Écomiam
+    Franprix
+    Gifi
+    Grand\ Frais
+    Grand\ Panier\ Bio
+    Hyper\ U
+    Intermarché\ Contact
+    Intermarché\ Express
+    Intermarché\ Hyper
+    Intermarché\ Super
+    KLO
+    La\ Foir'Fouille
+    La\ Vie\ claire
+    La\ Vie\ Saine
+    L'Atelier\ Fermier
+    Le\ Petit\ Casino
+    Leader\ Price
+    L'Eau\ Vive
+    Les\ Comptoirs\ de\ la\ Bio
+    Lidl
+    Magasin Biologique
+    Marché\ aux\ Affaires
+    Marché\ d’à\ coté
+    Match
+    Maximarché
+    Monop'
+    Monoprix
+    My\ Auchan
+    Naturalia
+    NaturéO
+    Netto
+    Norma
+    Noz
+    Picard
+    Proxi
+    Proximarché
+    Satoriz
+    Sherpa
+    Sitis
+    So\ Bio
+    Soft-discount
+    SPAR
+    Stokomani
+    Supeco
+    Super\ U
+    Supermarché\ Match
+    Supermarchés\ G20
+    Supermarchés\ Sitis
+    Surgelé
+    Thiriet
+    U\ express
+    Utile
+    Vival
+    Viveco
+    Votre Marché    
+]
+
+customer_list_short  = %w[
+    8\ à\ Huit
+    Action
+    Aldi
+    Atoo
+    Auchan
+    B&M
+    Babou
+    Bi1
+    Bio\ c'bon
+    Biocoop
+    Biomonde
+    Carrefour
+    Casino
+    Centrakor
+    Coccimarket
+    Coccinelle
+    Colruyt
+    Coop
+    Cora
+    Croc'Nature
+    Diagonal
+    Discount
+    E.Leclerc
+    Écomiam
+    Franprix
+    Gifi
+    Grand\ Frais
+    Grand\ Panier\ Bio
+    Hyper\ U
+    Intermarché
+    KLO
+    La\ Foir'Fouille
+    La\ Vie\ claire
+    La\ Vie\ Saine
+    L'Atelier\ Fermier
+    Le\ Petit\ Casino
+    Leader\ Price
+    L'Eau\ Vive
+    Les\ Comptoirs\ de\ la\ Bio
+    Lidl
+    Magasin Biologique
+    Marché\ aux\ Affaires
+    Marché\ d’à\ coté
+    Match
+    Maximarché
+    Monoprix
+    Naturalia
+    NaturéO
+    Netto
+    Norma
+    Noz
+    Picard
+    Proxi
+    Satoriz
+    Sherpa
+    Sitis
+    So\ Bio
+    Soft-discount
+    SPAR
+    Stokomani
+    Supeco
+    Super\ U
+    Supermarché\ Match
+    Supermarchés\ G20
+    Supermarchés\ Sitis
+    Thiriet
+    U\ express
+    Utile
+    Vival
+    Viveco
+    Votre\ Marché    
+]
