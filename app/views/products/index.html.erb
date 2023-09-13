@@ -16,9 +16,11 @@
         </div>
     <% end %>  
 </div>
-<nav>       
-  <ul class="nav">        
-    <li><a href="#" id="barcode_button" class="fa-solid fa-barcode fa-xl"><i class="fa-solid fa-barcode fa-xl"></i></a></li> 
-  </ul> 
+
+<nav>
+  <ul class="nav">
+    <li><a href="#" id="barcode_button" data-toggle="modal" data-target="#ModalCamera" class="fa-solid fa-barcode fa-xl"><i class="fa-solid fa-barcode fa-xl"></i></a></li> 
+  </ul>
 </nav>
-<div id="barcodescanner" width="600px"></div>
+<%= render "camera" %>
+

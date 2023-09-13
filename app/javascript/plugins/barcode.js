@@ -7,7 +7,6 @@ const barCodeScanner = () => {
     var last_result = [];
     
     if (Quagga.initialized == undefined) {
-      //console.log(`detect${id}`)
   
       Quagga.onDetected(function(result) {
         var last_code = result.codeResult.code;
@@ -25,26 +24,26 @@ const barCodeScanner = () => {
           // const closeButton = document.querySelector('.close-camera');
           // closeButton.click();
   
-          // const chevrons = document.querySelectorAll(".chevron-barcode");
-          // if (chevrons.length == 0 ) {
-          //   $.ajax({
-          //     type: "GET",
-          //     url: `/cart_items/add_barcode`,
-          //     data: { ean: code, quantity: 1 },
-          //     success: function(data){
-          //        containerIndex.innerHTML = data;
-          //        const event = new CustomEvent('turbolinks:load');
-          //        document.dispatchEvent(event);
-          //     }
-          //   });
-          // } else {
-          //   $.ajax({
-          //     type: "POST",
-          //     url: `/products/${product}/get_barcode`,
-          //     data: { ean: code, product_unit_id: product_unit }
+          const chevrons = document.querySelectorAll(".chevron-barcode");
+          if (chevrons.length == 0 ) {
+            $.ajax({
+              type: "GET",
+              url: `/cart_items/add_barcode`,
+              data: { ean: code, quantity: 1 },
+              success: function(data){
+                 containerIndex.innerHTML = data;
+                 const event = new CustomEvent('turbolinks:load');
+                 document.dispatchEvent(event);
+              }
+            });
+          } else {
+            $.ajax({
+              type: "POST",
+              url: `/products/${product}/get_barcode`,
+              data: { ean: code, product_unit_id: product_unit }
   
-          //   });
-          // }
+            });
+          }
         }
       });
     }
@@ -58,8 +57,8 @@ const barCodeScanner = () => {
         target: target    // Or '#yourElement' (optional)
       },
       constraints: {
-        width: 640,
-        height: 480,
+        width: 1280,
+        height: 800,
         facingMode: "environment",
       },
       decoder : {
@@ -81,7 +80,7 @@ const barCodeScanner = () => {
             console.log(err);
             return
         }
-        console.log("Initialization finished. Ready to start");
+        //console.log("Initialization finished. Ready to start");
         Quagga.initialized = true;
         Quagga.start();
     });
@@ -94,7 +93,7 @@ const barCodeScanner = () => {
   
   barcodeButton.addEventListener("click", function onClick(e) {
     e.preventDefault();
-    const target = document.querySelector('#barcodescanner')
+    const target = document.querySelector('#barcode-scanner')
     init_quagga(target);
   });
    
