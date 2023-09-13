@@ -22,6 +22,15 @@ class ProductsController < ApplicationController
     def destroy
     end
 
+    def barcode
+      # recherche si ean existe
+      # si oui
+      # ajouter un nouveau prix client
+      # sinon
+      # créer le product en allant chercher les infos sur l'api open food fact + ajouter nouveau prix client
+
+    end
+
     private
 
     def product_params
